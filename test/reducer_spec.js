@@ -5,7 +5,7 @@ import reducer from '../src/reducer';
 
 describe('reducer', () => {
 
-  it('handles SET_STATE (w/ palin JS payload )by merging server state into client state', () => {
+  it('handles SET_STATE with plain JS payload', () => {
     const initialState = Map();
     const action = {
       type: 'SET_STATE',
