@@ -8,12 +8,13 @@ import {Provider} from 'react-redux';
 import App from './components/App';
 import {VotingContainer} from './components/Voting';
 import {ResultsContainer} from './components/Results';
+import {setState} from './action_creators'
 
 const store = createStore(reducer);
 
 const socket = io(`${location.protocol}//${location.hostname}:8090`);
 socket.on('state', state =>
-  store.dispatch({type: 'SET_STATE', state})
+  store.dispatch(setState(state))
 );
 
 
