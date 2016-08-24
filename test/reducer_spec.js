@@ -10,7 +10,7 @@ describe('reducer', () => {
     const action = {
       type: 'SET_STATE',
       state: 
-        vote: 
+        vote: {
           pair: ['Trainspotting', '28 Days Later'],
           tally: {Trainspotting: 1}
         }
