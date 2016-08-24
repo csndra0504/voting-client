@@ -1,7 +1,9 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import {
   renderIntoDocument,
-  scryRenderedDOMComponentsWithClass
+  scryRenderedDOMComponentsWithClass,
+  Simulate
 } from 'react-addons-test-utils';
 import {List, Map} from 'immutable';
 import Results from '../src/components/Results';
@@ -22,5 +24,20 @@ describe('Results', () => {
     expect(entries[1].textContent).to.contain('28 Days');
     expect(entries[1].textContent).to.contain('0');
   })
+
+  it('invokes a callback when the Next button is clicked', () => {
+    let nextClicked;
+    const next = () => nextClicked = true;
+    const pair = List.of("Trainspotting", "28 Days Later");
+    const tally = Map();
+    const component = renderIntoDocument(
+      <Results pair={pair}
+              tally={tally}
+              next={next} />
+    );
+    const nextBtn = ReactDOM.findDOMNode(component.refs.next);
+    Simulate.click(nextBtn);
+    expect(nextClicked).to.equal(true);
+  });
 
 })
